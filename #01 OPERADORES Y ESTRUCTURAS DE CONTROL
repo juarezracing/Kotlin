@@ -1,0 +1,112 @@
+// OPERADORES Y ESTRUCTURAS DE CONTROL
+
+fun main() {
+
+    //Operadores
+    println("Suma: 10 + 3 =  ${10+3}")
+    println("Resta: 10 - 3 = ${10-3}")
+    println("Multiplicación 10 * 3 = ${10*3}")
+    println("División 10 / 3 = ${10/3}")
+    println("Módulo: 10 % 3 = ${10%3}")
+
+    //Operadores Lógicos
+    println()
+    println("True AND False = ${true&&false}")
+    println("True OR False = ${true||false}")
+    println("NOT False = ${!false}")
+
+    //Comparación
+    println()
+    println("Es Igual que -> 1 == 1 = ${1==1}" )
+    println("Es Distinto que -> 1 != 1 = ${1!=1}")
+    println("Es Mayor que -> 1 > 1 = ${1>1}")
+    println("Es Menor que -> 1 < 1 = ${1<1}")
+    println("Es Mayor Igual que -> 1 >= 1 = ${1>=1}")
+    println("Es Menor Igual que -> 1 <= 1 = ${1<=1}")
+
+    //Asignación
+    println()
+    println("Incremento += x")
+    println("Decremento -= x")
+
+    //Pertenencia
+    println()
+    val listNumbers = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    println("2 esta en la lista?: ${2 in listNumbers}")
+    println("18 no esta en la lista?: ${18 !in listNumbers}")
+
+    //Estructuras de Control
+    //If
+    println()
+    if (1 in listNumbers)
+        println("1 esta en la lista")
+
+    //If - Else
+    println()
+    if (11 in listNumbers)
+        println("11 esta en la lista")
+    else
+        println("11 no esta en la lista")
+
+    //When
+    val shoppingCart = listOf("Leche", "Galletas", "Fideos", "Aceite", "Mayonesa", "Gaseosa")
+    val favorites = listOf("Carne", "Pollo", "Huevo")
+    println()
+    println("Selecciona una opcion: \n 1) Carrito de compras \n 2) Favoritos \n 3) Menú principal\n")
+    val option = readln().toInt()
+
+    when (option){
+        1 -> {
+            println("El carrito contiene los siguientes articulos: ")
+            shoppingCart.forEach { articles -> println(articles)}
+        }
+        2 -> {
+            println("Sus artículos favoritos son: ")
+            favorites.forEach {articles -> println(articles)}
+        }
+        3 -> println("Regresando al menu principal..")
+        else -> println("Elige una opción correcta")
+    }
+
+    //For
+    println("\nLa cesta contiene: ")
+    for (article in shoppingCart){
+        println(article)
+    }
+
+    //While
+    var loop = 10
+    print("\nCuenta regresiva: ")
+    while (loop >= 0) {
+        print("${loop--}..")
+    }
+
+    // Do - While
+    println()
+    var life=50
+    do{
+        val damage = (1..minOf(100, life)).random()
+
+        life -= damage
+        println("\nDaño enemigo: $damage \nSalud: $life")
+
+        if(life<1){
+            println("++Fin del Juego!!++")
+            break //Salir del bucle cuando la vida es baja
+        }
+    } while (life>0)
+
+    println()
+    for (i in 10..55 step 2)
+        if (i!=16 && i%3!=0)
+            print("$i ")
+
+    println()
+    for (i in 10..55 step 2){
+        if (i==16 || i%3==0){
+            continue
+        }
+        print("$i ")
+    }
+
+}
