@@ -1,0 +1,84 @@
+// FUNCIONES Y ALCANCE
+
+/*
+    CONVENCIONES DEL LENGUAJE KOTLIN
+
+    1.- Las clases y objetos deben empezar con mayuscula y suar camelCase
+    2.- Las funciones y variables deben empezar con minúscula y usar camelCase no guinos bajos
+    3.- Factory´s usados para crear instancias pueden tener el mismo nombre
+            *Fatory -> patrón de diseño que pertenece a la categoria de los patrones creacioneles y nos ayuda a crear
+                       distintos objetos sin exponer la lógica de su creación gracias a la implementación de una
+                       interfaz común.
+   4.- Los métodos para test solo para testing pueden ir entre comillas (backticks) y usar guiones bajos (snake_case)
+   5.- Las constantes de nivel superior o global se usan en Mayúsculas y pueden usar snake_case
+   6.- Los objetos e instancias pueden usar camelCase, las instancias pueden iniciar con Mayúscula
+   7.- Los atributos de clases pueden tener el mismo nombre pero uno debe ser público y otro privado
+ */
+
+
+// Function without parameter
+fun functionWithoutParameter(){
+    }
+
+// Function with parameter
+fun functionWithParameter(parameter: String){
+    println(parameter)
+}
+
+// Function with several defaults parameters
+fun printDragonBallTechnique(character: String="Krillin", technique: String="Kienzan"){
+}
+
+// Return Function
+fun returnFunction(): String{
+    return "Esto es un return de un String"
+}
+
+// Nested Functions
+fun nestedFunction(){
+    fun functionOne(){
+        println("This Is The Function One, FUCK YEAH!!!")
+    }
+    println("Lets to see the Nested Function -> " )
+    functionOne()
+}
+
+//EXTRA WITH IF - ELSE
+fun convertToNumber(string1: String, string2: String): Int{
+    var num=0
+    for (i in 1..100){
+        if (i%3==0 && i%5!=0){
+            println(string1)
+        } else if(i%5==0 && i%3!=0){
+            println(string2)
+        } else if(i%3==0 && i%5==0){
+            println(string1+string2)
+        } else{
+            println(i)
+            num++
+        }
+    }
+    println ("Se han impreso $num números en vez de los strings")
+    return num
+}
+//EXTRA WITH WHEN
+fun printNumberOrText(text1: String, text2: String): Int {
+    var num=0
+    for(i in 1..100){
+        when{
+            i%3==0 -> println("$text1")
+            i%5==0 -> println("$text2")
+            i%15==0 -> println("$text1 $text2")
+            else -> {
+                println("$i")
+                num++
+            }
+        }
+    }
+    return num
+}
+
+fun main(){
+    convertToNumber("caca", "delavaca")
+    printNumberOrText("aaaa", "bbb")
+}
