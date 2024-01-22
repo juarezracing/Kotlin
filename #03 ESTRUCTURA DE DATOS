@@ -1,0 +1,140 @@
+// ESTRUCTURA DE DATOS
+
+/*
+En kotlin existen 3 estructuras de datos:
+    1. List
+    2. Set
+    3. Map
+Estas estructuras pueden ser mutables o inmutables, esto se tiene que especificar al crear la estructura.
+    ** Solo las listas, mapas, sets mutables pueden ser modificados **
+ */
+
+// List
+    val listaDe = listOf("item 1", "item 2", "item 3")
+    val listaMutableDe = mutableListOf("item 1", "item 3", "item 2")
+
+// Set -> no pueden existir elementos repetidos, "si los hay te los quita"
+    val setDe = setOf("set 1", "set 1", "set 3")
+    val mutableSetDe = mutableSetOf("zset 1992", "set 1", "set 2", "set 1")
+
+// Map
+    val mapaDe = mapOf("aqui" to "alla", "esto" to "otro", "él" to "ella")
+    val mapaMutableDe = mutableMapOf("aqui" to "alla", "esto" to "otro", "él" to "ella")
+
+fun printStructuredData(){
+    print("LISTS\n")
+    println(listaDe)
+    println(listaMutableDe)
+
+    println("\nSETS")
+    println(setDe)
+    println(mutableSetDe)
+
+    println("\nMAPS")
+    println(mapaDe)
+    println(mapaMutableDe)
+
+    // Add Element
+    listaMutableDe.add("item added")
+    mutableSetDe.add("set added")
+    mapaMutableDe["otra"] = "cosa"
+    println()
+    println(listaMutableDe)
+    println(mutableSetDe)
+    println(mapaMutableDe)
+
+    // Remove Element
+    listaMutableDe.remove("item 1")
+    mutableSetDe.remove("set 1")
+    mapaMutableDe.remove("aqui")
+    println()
+    println(listaMutableDe)
+    println(mutableSetDe)
+    println(mapaMutableDe)
+
+    // Update Element ** Only on Maps **
+    println()
+    mapaMutableDe["otra"]="cosa renovada"
+    println(mapaMutableDe)
+
+    // Order
+    println()
+    println(listaMutableDe.sorted())
+    println(mutableSetDe.sorted())
+    println(mapaMutableDe.values.sorted())
+}
+
+// DIFICULTAD EXTRA - AGENDA DE CONTACTOS
+/*Se crea contacts que es un mutable map de String a String (name -> phone)
+* que en principio es un mutable map vacio, algo asi ???
+**/
+val contacts:MutableMap<String, String> = mutableMapOf()
+
+//Funciones que sirven pero no las utilizamos
+fun addContact(name:String, phone:String) = contacts.put(name, phone)
+fun deleteContact(name:String) = contacts.remove(name)
+fun updateContact(name:String, phone:String){
+    contacts[name]=phone
+}
+fun searchContact(name:String):String{
+    return contacts[name].toString()
+}
+
+//EJERCICIO AGENDA
+fun readData(){
+    println("Name for new contact: ")
+    val name = readln().toString()
+    println("Phone for new contact: ")
+    val phone = readln().filter { it.isDigit() }
+    if (phone.length < 9){
+        println("Invalid phone number")
+    }
+    updateContact(name,phone)
+}
+fun updateData(){
+    println("name for update number:")
+    val name = readln().toString()
+    println("number phone  for update contact:")
+    val phone = readln().filter { it.isDigit() } //.filter { it.isDigit() } catch only the digits
+    if (phone.length < 10) {
+        println("invalid phone number")
+    }
+    updateContact(name,phone)}
+fun deleteData(){
+    println("name for delete contact:")
+    val name = readln().toString()
+    deleteContact(name)
+}
+fun showData(){
+    for ((name,phone) in contacts){
+        println("$name : $phone")
+    }
+}
+//Las funciones se utilizan en el Contact Agent
+fun contactAgent(){
+    var option:Int=0
+    while (option!=5) {
+        println("Contact Agent Menu")
+        println("1. Add contact")
+        println("2. Delete contact")
+        println("3. Update number contact")
+        println("4. Show contact list")
+        println("5. Exit")
+        option = readln().toInt()
+        when (option) {
+            1 -> readData()
+            2 -> deleteData()
+            3 -> updateData()
+            4 -> showData()
+            5 -> break
+            else -> println("invalid option")
+        }
+    }
+}
+
+
+//MAIN
+fun main() {
+    printStructuredData()
+    contactAgent()
+}
