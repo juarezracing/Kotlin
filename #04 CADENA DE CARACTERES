@@ -226,17 +226,6 @@ as long as the first element in the expression is a string
     print("\nThe Unicode code of ${string[5]} es: ")
     print(string.codePointAt(5))
 
-    //fun <T : Comparable<T>> T.coerceAtLeast(minimumValue: T): T
-    //fun <T : Comparable<T>> T.coerceAtLeast(maximumValue: T): T
-    //fun <T : Comparable<T>> T.coerceIn(minimumValue: T?, maximumValue: T?): T
-    println()
-    /* Obliga a que al menos sea tan grande como friday */
-    println(DayOfWeek.WEDNESDAY.coerceAtLeast(DayOfWeek.FRIDAY))
-    /* Obliga a que a lo sumo sea como friday */
-    println(DayOfWeek.WEDNESDAY.coerceAtMost(DayOfWeek.FRIDAY))
-    /* Obliga a que este entre los dos valores*/
-    println(DayOfWeek.MONDAY.coerceIn(DayOfWeek.THURSDAY, DayOfWeek.FRIDAY))
-
     // substring
     println(string.substring(0, 3))
     // length
