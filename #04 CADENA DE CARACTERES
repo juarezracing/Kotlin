@@ -1,0 +1,317 @@
+import java.time.DayOfWeek
+
+//#04 CADENAS DE CARACTERES
+/* Se pueden añadir más funciones y poner más ordenado :S*/
+
+fun apuntesString(){
+    //STRING --> class String: Comparable<String>, CharSequence
+
+    //CREATE A STRING - we use a sequence of characters in double quotes ""
+    val str = "abcd 1233"
+
+    //ITERATE OVER THEIR CHARACTERS:
+    for (c in str) {
+        println(c)
+    }
+
+    /* STRING ARE IMMUTABLE
+Once you initialize a string, you can´t change its value or assign a new value to it.
+All operations that transform strings return their results in a new String object, leaving the original string unchanged.
+*/
+    println()
+    println(str.uppercase())
+
+    /* CONCATENATE STRINGS -
+use the + operator. This also works for concatenating string with values of other types,
+as long as the first element in the expression is a string
+*/
+    val s: String = "abc" + 1
+    println()
+    println(s + "def")
+
+    //STRING LITERALS
+    // ESCAPED STRINGS - Backslash \
+    /* Can contain escaped characters, the conventional way is done using BACKSLASH \ */
+    val s1 = "Hello, world!\n"
+
+    //LISTS OF SUPPORTED ESCAPE SEQUENCES
+    /*  TAB --> \T                                  BACKSPACE --> \B
+ *  NEW LINE --> \n                             CARRIAGE RETURN (CR) --> \r
+ *  SINGLE QUOTATION MARK --> \'                DOUBLE QUOTATION MARK --> \"
+ *  BACKSLASH --> \\                            DOLLAR SIGN --> \$
+ *
+ *  To encode any character, use the Unicode escape sequence syntax: '\uFF00'
+ *  Unicode Characters --> https://symbl.cc/es/unicode/table/
+ *                     --> https://home.unicode.org/
+ * */
+
+    //MULTILINE STRINGS - Triple Quote """
+    /* Can contain newlines and arbitrary text. It delimited by triple quote """
+     * Contain no escaping newlines and any other characters */
+    val text = """
+                for (c in "foo")
+                    print(c)
+            """.trimIndent()
+    println("\n" + text)
+    /* To remove leading whitespace from multiline string use .timMargin() */
+    /* By default, a pipe symbol | is used as margin prefix */
+    /* Can choose another character as a margin prefix and pass it as a parameter -> trimMargin(">") */
+    val text2 = """
+                >
+                >Tell me and I forget.
+                >Teach me and I remember.
+                |Involve me and I learn.
+                |(Benjamin Franklin)
+            """.trimMargin(">")
+    println(text2)
+
+    //STRING TEMPLATES - Dollar Sing $ - Expression in Curly Braces {}
+    /* Template Expressions -> Pieces of code that are evaluated and whose results are concatenated into the String */
+    val i = 10
+    println("\ni = $i")
+    /* Expression in Curly Braces {} */
+    println("\n$s.length is ${s.length}")
+    /* To insert the dollar sing in a multiline string -> ${'$'} */
+    val price = """
+                ${'$'}_9.99
+                """.trimIndent()
+    println("\n" + price)
+
+    //STRING FORMATTING - String.format()
+    /* Accepts a format string and one more arguments.
+ * The format string contains one placeholder % for each remaining argument, followed by format specifiers.
+ * Format Specifiers are formatting instructions for the respective argument.
+ * In the output, each argument fill its corresponding placeholder in the defined format */
+    // Formats to add zeroes and make a length of seven
+    val integerNumber = String.format("%07d", 31416)
+    println("\n" + integerNumber)
+    // Formats with four decimals and sing
+    val floatNumber = String.format("%+.4f", 3.141592)
+    println("\n" + floatNumber)
+    // Formats with uppercase for two placeholders
+    val helloString = String.format("%S %S", "hello", "world")
+    println("\n" + helloString)
+    /* String.format() provides similar functionality to string templates.
+ * However, it is more versatile because there are more formatting options available.
+ * In addition, you can assign the format string from a variable, this can be useful when the format string changes. */
+    /* FORMAT SPECIFIERS --> https://docs.oracle.com/javase/8/docs/api/java/util/Formatter.html#summary  */
+
+    // STRING CONSTRUCTOR --> <init>() --> The String class represents character strings.
+    // STRING PROPERTIES --> val length: Int --> Return the length of this character sequence.
+
+    // EXTENSION PROPERTIES
+    // val CharSequence.indices: IntRange
+    /* Returns the range of valid character indices for this char sequence */
+    println("\n" + "Cadena de caracteres".indices)
+
+    // val CharSequence.lastIndex: Int
+    /* Return the index of the last character in the char sequence or -1 if it is empty */
+    println("Cadena de caracteres".lastIndex)
+
+    // STRING FUNCTIONS
+    val sentence1a: String = "ola q ase"
+    val sentence2: String = "hola que haces"
+    val sentence1b: String = "ola q ase"
+
+    // fun compareTo(other: String): Init
+    /* Compare this object with the specified object for order:
+    * 0 if the object is equal to the specified other object
+    * -nº if it´s less than other
+    * +nª if it´s greater than other
+    * */
+    println("\nsentence 1a compareTo sentence 1b -> " + sentence1a.compareTo(sentence1b))
+    println("sentence 1a compareTo sentence 2 -> " + sentence1a.compareTo(sentence2))
+    println("sentence 2 compareTo sentence 1a -> " + sentence2.compareTo(sentence1a))
+
+    // fun equals(other: Any?): Boolean
+    /* Indicates whether some other object is "equal to" this one  */
+    println("\nsentence 1a is equal sentence 1b? -> " + sentence1a.equals(sentence1b))
+    println("sentence 1a is equal sentence 2? -> " + sentence1a.equals(sentence2))
+
+    // fun get(index: Int): Char
+    /* Returns the character of the string at the specified index */
+    print("\n La tercera letra del string es: ")
+    println("Esto es un string".get(2))
+
+    // fun hashCode(): Int
+    /* Returns a hash code value for the object */
+    println("El valor del hash code del string es: ")
+    println("Esto es otro string".hashCode())
+
+    // operator fun plus(other: Any?): String
+    /* Returns a string obtained by concatenating this string with the string representation of the given other object */
+    println()
+    println("Esto es un string concatenado con ".plus(33))
+
+    // fun subSequence(startIndex: Int, endIndex: Int): CharSequence
+    /* Returns a new character sequence that is a subsequence of this character sequence,
+ *  starting at startIndex & ending right before endIndex
+ *  */
+    println()
+    println("En este String se van a devolver la subcadena entre las posiciones 3 y 10".subSequence(2, 9))
+
+    // fun toString(): String
+    /* Returns a string representation of the object */
+    println(55.toString())
+
+    // fun CharSequence.any(): Boolean
+    /* Returns true if char sequence has at least one character */
+    println()
+    println("".any())
+    println("Este si".any())
+
+    // fun CharSequence.asIterable(): Iterable<Char>
+    /* Creates an Iterable instance that wraps the original char sequence returning its characters when being iterated */
+    println()
+    println("Esto es una cadena de caracteres".asIterable())
+
+    // fun CharSequence.asSequence(): Sequence<Char>
+    /* Create a Sequence instance that wrap the original sequence returning its characters when being iterated */
+    println()
+    println("Esto es una cadena de caracteres".asSequence())
+
+    // fun <K, V> CharSequence.associate(transform: (Char) -> Pair<K, V>): Map<K, V>
+    /* Returns a Map containing key-value pairs provided by transform function applied to characters of the given char sequence */
+    println()
+    println("Esto es una cadena de caracteres".associate { char -> char to char.code })
+    /* Char.code --> return the code of this Char that is the value it was constructed with,
+             * and UTF-16 code unit corresponding to this Char */
+
+    // fun <K> CharSequence.associateBy(keySelector: (Char) -> K): Map<K, Char>
+    /* Returns a Map containing the characters from the given char sequence indexed by the key returned
+ * from keySelector function applied to each character */
+    println()
+    println("Esto es una cadena de caracteres".associateBy { char -> char.code })
+    // fun <K> CharSequence.associateBy(keySelector: (Char) -> K, valueTransform: (Char) -> V): Map<K, V>
+    /* Returns a Map containing the values provided by valueTransform and indexed by keySelector functions
+ * applied to characters of the given char sequence  */
+    println()
+    println(
+        "Esto es una cadena de caracteres".associateBy(
+            { char -> char.uppercaseChar().code },
+            { char -> char.uppercaseChar() })
+    )
+
+    //fun <K, M : MutableMap<in K, in Char>> CharSequence.associateByTo( destination: M, keySelector: (Char) -> K, valueTransform: (Char)): M
+    /*1ST WAY*/
+    println()
+    val string = "esto es una cadena de caracteres"
+    val result = mutableMapOf<Int, Char>()
+    string.associateByTo(result) { char -> char.code }
+    println(result)
+    /*2SD WAY*/
+    string.associateByTo(result, { char -> char.uppercaseChar().code }, { char -> char.uppercaseChar() })
+    println(result)
+
+    //byteInputStream -> Creates a new byte input stream for the string
+    println()
+    println(string.byteInputStream())
+
+    //capitalize -> returns a copy of this string having its first letter title cased using the rules of the specified locale
+    println()
+    println(string.capitalize())
+
+    //Chunked -> fun CharSequence.chunked(size: Int): List<String>
+    /* Splits this char sequence into a list of string each not exceeding the given size */
+    println()
+    println(string.chunked(5))
+    // fun <R> CharSequence.chunked(size: Int, transform: (CharSequence) -> R): List<R>
+    /* Splits  not exceeding the given size and applies the given transform function to an each */
+    println()
+    val codonTable = mapOf("esto" to "aquello", "cadena" to "string", "es" to "puede ser")
+    println(string.chunked(4) { codon: CharSequence -> codonTable[codon.toString()] })
+
+    // fun String.codePointAt(index: Int): Int
+    /* Return the character (Unicode code point) at the specifies index */
+    print("\nThe Unicode code of ${string[5]} es: ")
+    print(string.codePointAt(5))
+
+    //fun <T : Comparable<T>> T.coerceAtLeast(minimumValue: T): T
+    //fun <T : Comparable<T>> T.coerceAtLeast(maximumValue: T): T
+    //fun <T : Comparable<T>> T.coerceIn(minimumValue: T?, maximumValue: T?): T
+    println()
+    /* Obliga a que al menos sea tan grande como friday */
+    println(DayOfWeek.WEDNESDAY.coerceAtLeast(DayOfWeek.FRIDAY))
+    /* Obliga a que a lo sumo sea como friday */
+    println(DayOfWeek.WEDNESDAY.coerceAtMost(DayOfWeek.FRIDAY))
+    /* Obliga a que este entre los dos valores*/
+    println(DayOfWeek.MONDAY.coerceIn(DayOfWeek.THURSDAY, DayOfWeek.FRIDAY))
+
+    // substring
+    println(string.substring(0, 3))
+    // length
+    println(string.length)
+    // uppercase
+    println(string.uppercase())
+    // lowercase
+    println(string.lowercase())
+    // repeat
+    println(string.repeat(3))
+    // trim
+    println(string.trim())
+    //replace
+    println(string.replace("free", ""))
+    // interpolation
+    println("$string use kienzan technique")
+    // union
+    val example = "$string use kienzan technique"
+    println(example + "and Goku use kamehameha")
+    // verify
+    println(string.startsWith("free"))
+    println(string.endsWith("zer"))
+    // split
+    println(string.split("e"))
+    // compare
+    println(string.compareTo("cell"))
+    // reversed
+    println(string.reversed())
+}
+
+//DIFICULTAD EXTRA
+/* Programa que analice dos palabras diferentes y realice comprobaciones para descubrir si son:
+ * -Palíndromos
+ * -Anagramas --> las dos palabras usan las mismas letras pero con otro orden
+ * -Isogramas --> no tiene ninguna letra repetida
+ */
+fun isPalindromePocha(word1: String, word2: String): Boolean{
+    var isPalindrome: Boolean = false
+    var a:Int = 0
+    if (word1.length == word2.length){
+        val length:Int = word1.length-1
+        for (i in 0..length-1){
+            if (word1.uppercase().get(a) == word2.uppercase().get(length-a)){
+                isPalindrome = true
+                a++
+            }else{
+                isPalindrome = false
+            }
+        }
+        return isPalindrome
+    }else{
+        return isPalindrome
+    }
+}
+fun isPalindrome(word1: String, word2: String): Boolean{
+    return word1.uppercase().reversed() == word2.uppercase()
+}
+
+fun isAnagram(word2: String, word1: String): Boolean{
+    //Ponemos todas las letras en mayusculas(.uppercase()) para compararlas, las pasamos a array (.toCharArray()) para ordenarlas con repeticion(.sorted()) y compararlas
+    return (word2.uppercase().toCharArray().sorted()==word1.uppercase().toCharArray().sorted())
+}
+
+fun isIsogram(word: String): Boolean{
+    return word.toSortedSet().toCharArray().sorted()==word.toCharArray().sorted()
+}
+fun isIsogramPocho(word: String): Boolean{
+    var isIsogram = true
+    for(i in 0..word.length-2){
+        if (word.toCharArray().sorted().get(i) != word.toCharArray().sorted().get(i+1)){
+            isIsogram = true
+        }else{
+            isIsogram = false
+            break
+        }
+    }
+    return isIsogram
+}
